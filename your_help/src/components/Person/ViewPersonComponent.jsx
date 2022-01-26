@@ -70,7 +70,7 @@ class ViewPersonComponent extends Component {
                     <input placeholder = "telefon" name="telefon" className = "form-control"
                       value = {this.state.telefon} />
                   </div>
-                  <button className = "btn btn-danger" onClick = {this.cancel.bind(this)} style = {{marginLeft: "10px"}}>OK</button>
+                  <button className = "btn btn-success" onClick = {this.cancel.bind(this)} style = {{marginLeft: "10px"}}>OK</button>
 
                 </form>
 

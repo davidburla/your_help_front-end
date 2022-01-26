@@ -6,6 +6,7 @@ import "./PersonCard-Style.css"
 const personCard = props =>{
   let view_person = "/view-person/"+props.person.personId;
   let delete_person = "/delete-person/"+props.person.personId;
+  let update_person = "/update-person/" + props.person.personId;
   return(
   <div className="col-md-4" key={props.person.personId}>
     <div className="card text-center shadow">
@@ -18,6 +19,7 @@ const personCard = props =>{
           Detalii persoana
         </p>
         <a href={view_person} className="btn btn-outline-success"> Detalii </a>
+        <a href={update_person} className="btn btn-outline-success"> Modifica </a>
         <a href={delete_person} className="btn btn-outline-danger"> Elimina </a>
       </div>
     </div>

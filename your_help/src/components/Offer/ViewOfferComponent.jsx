@@ -42,7 +42,7 @@ class ViewOfferComponent extends Component {
 
   cancel()
   {
-    this.props.history.push('/Offers');
+    this.props.history.push('/offers');
   }
   render() {
     return (

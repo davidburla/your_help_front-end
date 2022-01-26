@@ -16,6 +16,8 @@ import AddOfferComponent from './components/Offer/AddOfferComponent';
 import HomeComponent  from './components/Home/HomeComponent';
 import ViewOfferComponent from './components/Offer/ViewOfferComponent';
 import DeleteOfferComponent from './components/Offer/DeleteOfferComponent';
+import UpdateOfferComponent from './components/Offer/UpdateOfferComponent';
+
 function App() {
   return (
     <div>
@@ -36,6 +38,7 @@ function App() {
                 <Route path = "/add-offer" component = {AddOfferComponent}></Route>
                 <Route path = "/delete-offer/:id" component = {DeleteOfferComponent}></Route>
                 <Route path = "/view-offer/:id" component={ViewOfferComponent}></Route>
+                <Route path = "/update-offer/:id" component={UpdateOfferComponent}></Route>
               </Switch>
             </div>
           <FooterComponent />

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import OfferService from '../../services/OfferServices';
 
-class CreateOfferComponent extends Component {
+class UpdateOfferComponent extends Component {
   constructor(props)
   {
       super(props)
       this.state = {
+        id: this.props.match.params.id,
         name: '',
         category: '',
         price: '',
@@ -20,20 +21,38 @@ class CreateOfferComponent extends Component {
       this.changeDescriptionHandler = this.changeDescriptionHandler.bind(this);
       this.changeZonaHandler = this.changeZonaHandler.bind(this);
       this.changePersonIdHandler = this.changePersonIdHandler.bind(this);
-      this.saveOffer = this.saveOffer.bind(this);
+      this.updateOffer = this.updateOffer.bind(this);
   }
 
-  saveOffer = ( event ) => {
+  componentDidMount()
+  {
+    OfferService.getOfferById(this.state.id).then( (res) => {
+      let offer = res.data;
+      console.log("offer: ", offer);
+      this.setState(
+        {
+          name: offer.name,
+          category: offer.category_name,
+          price: offer.price,
+          description: offer.description,
+          zona: offer.zona,
+          personId: offer.personId
+        });
+    });
+  }
+
+  updateOffer = ( event ) => {
     event.preventDefault();
-    let offer = {name: this.state.name, category_name: this.state.category,
+    let offer = {offerId: this.state.id, name: this.state.name, category_name: this.state.category,
       price: this.state.price, description: this.state.description, zona: this.state.zona,
       isValid: this.state.isValid, personId: this.state.personId};
     
     console.log('offer => ' + JSON.stringify(offer));
-      OfferService.createOffer(offer).then( res => {
+      OfferService.updateOffer(offer).then( res => {
         this.props.history.push('/offers');
       });
   }
+
   changeNameHandler = ( event ) => {
     this.setState({name: event.target.value});
   }
@@ -64,7 +83,7 @@ class CreateOfferComponent extends Component {
         <div className = "container">
           <div className = "row">
             <div className = "card col-md-6 offset-md-3 offset-md-3">
-              <h3 className = "text-center"> Adauga Oferta </h3>
+              <h3 className = "text-center"> Modifica Oferta </h3>
               <div className = "card-body">
                 <form action="">
                   <div className = "form-group">
@@ -98,7 +117,7 @@ class CreateOfferComponent extends Component {
                       value = {this.state.personId} onChange={this.changePersonIdHandler}/>
                   </div>
 
-                  <button className = "btn btn-success" onClick={this.saveOffer}>Save</button>
+                  <button className = "btn btn-success" onClick={this.updateOffer}>Update</button>
                   <button className = "btn btn-danger" onClick = {this.cancel.bind(this)} style = {{marginLeft: "10px"}}>Cancel</button>
 
                 </form>
@@ -112,4 +131,4 @@ class CreateOfferComponent extends Component {
   }
 }
 
-export default CreateOfferComponent;
+export default UpdateOfferComponent;

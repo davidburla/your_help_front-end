@@ -6,6 +6,7 @@ import "../Person/PersonCard-Style.css"
 const personCard = props =>{
   let view_offer = "/view-offer/" + props.offer.offerId;
   let delete_offer = "/delete-offer/" + props.offer.offerId;
+  let update_offer = "/update-offer/" + props.offer.offerId;
   return(
   <div className="col-md-4" key={props.offer.offerId}>
     <div className="card text-center shadow">
@@ -15,6 +16,7 @@ const personCard = props =>{
         <h4> <u>Persona:</u> <i>{props.offer.namePerson} {props.offer.prenamePerson} </i></h4>
         <h4> <u>Price:</u> <i>{props.offer.price}</i> </h4>
         <a href={view_offer} className="btn btn-outline-success"> Detalii </a>
+        <a href={update_offer} className="btn btn-outline-success"> Modifica </a>
         <a href={delete_offer} className="btn btn-outline-danger"> Elimina </a>
       </div>
     </div>

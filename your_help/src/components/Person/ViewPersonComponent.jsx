@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PersonServices from '../services/PersonServices';
+import PersonServices from '../../services/PersonServices';
 
 class ViewPersonComponent extends Component {
   constructor(props)
@@ -20,13 +20,14 @@ class ViewPersonComponent extends Component {
   {
     PersonServices.getPersonById(this.state.id).then( (res) => {
       let pers = res.data;
+      console.log("person: ", + JSON.stringify(pers));
       this.setState(
         {
-          nume: pers.nume,
-          prenume: pers.prenume,
+          nume: pers.name,
+          prenume: pers.prename,
           email: pers.email,
           password: pers.password,
-          telefon: pers.telefon
+          telefon: pers.phone
         });
     });
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PersonServices from '../services/PersonServices';
+import PersonServices from '../../services/PersonServices';
 
 class UpdatePersonComponent extends Component {
   constructor(props)
@@ -12,7 +12,8 @@ class UpdatePersonComponent extends Component {
         prenume: '',
         email: '',
         password: '',
-        telefon: ''
+        telefon: '',
+        isDeleted: ''
       }
       this.changeNumeHandler = this.changeNumeHandler.bind(this);
       this.changePrenumeHandler = this.changePrenumeHandler.bind(this);
@@ -27,23 +28,29 @@ class UpdatePersonComponent extends Component {
   {
     PersonServices.getPersonById(this.state.id).then( (res) => {
       let pers = res.data;
+      console.log("person: ", pers);
       this.setState(
         {
-          nume: pers.nume,
-          prenume: pers.prenume,
+          id: pers.personId,
+          nume: pers.name,
+          prenume: pers.prename,
           email: pers.email,
           password: pers.password,
-          telefon: pers.telefon
+          telefon: pers.phone,
+          isDeleted: pers.isDeleted
         });
     });
   }
 
   updatePerson = ( event ) => {
     event.preventDefault();
-    let person = {nume: this.state.nume, prenume: this.state.prenume,
-      email: this.state.email, password: this.state.password, telefon: this.state.telefon};
+    let person = {personId: this.state.id, name: this.state.nume, prename: this.state.prenume,
+      email: this.state.email, password: this.state.password, phone: this.state.telefon,
+      isDeleted: this.state.isDeleted};
     console.log('person => ' + JSON.stringify(person));
-    PersonServices.updatePerson(person, this.state.id).then( res => {
+      
+
+    PersonServices.updatePerson(person).then( res => {
        this.props.history.push('/persons');
     });
 

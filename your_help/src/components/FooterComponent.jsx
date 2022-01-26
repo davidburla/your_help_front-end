@@ -5,7 +5,6 @@ class FooterComponent extends Component {
   {
       super(props)
       this.state = {
-
       }
   }
 
@@ -13,7 +12,9 @@ class FooterComponent extends Component {
     return (
       <div>
         <footer className = "footer">
-          <span className = "text-muted"> All Rights Reserved David Burla </span>
+          <span className = "text-muted"> All Rights Reserved David Burla - Provided by Belciug-Giza Felicia</span>
+          <br/>
+          <span className = "text-muted"> Dezvoltat in cadrul laboratorului PPAW  </span>
         </footer>
       </div>
     );
